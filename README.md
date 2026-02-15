@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://hedgeedge.io">hedgeedge.io</a> · <a href="#agents">Agents</a> · <a href="#architecture">Architecture</a> · <a href="#getting-started">Getting Started</a>
+  <a href="https://hedgeedge.io">hedgeedge.infoo</a> · <a href="#agents">Agents</a> · <a href="#architecture">Architecture</a> · <a href="#getting-started">Getting Started</a>
 </p>
 
 ---
