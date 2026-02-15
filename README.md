@@ -76,16 +76,16 @@ When a trader opens a position on a prop firm evaluation account, Hedge Edge **i
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        USER / CEO                               │
-│              (Natural language intent via VS Code)               │
+│              (Natural language intent via VS Code)              │
 └─────────────────────────┬───────────────────────────────────────┘
                           │
                           ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                   ORCHESTRATOR AGENT                             │
+│                   ORCHESTRATOR AGENT                            │
 │         Intent classification · Task decomposition              │
 │         Agent routing · Dependency management                   │
 │         Result aggregation · Quality assurance                  │
-└───┬────────┬────────┬────────┬────────┬────────┬────────┬──────┘
+└───┬────────┬────────┬────────┬────────┬────────┬────────┬───────┘
     │        │        │        │        │        │        │
     ▼        ▼        ▼        ▼        ▼        ▼        ▼
 ┌───────┐┌───────┐┌───────┐┌───────┐┌───────┐┌───────┐┌───────┐┌───────┐
