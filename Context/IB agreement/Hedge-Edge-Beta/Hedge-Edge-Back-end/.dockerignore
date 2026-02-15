@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+__pycache__
+*.pyc
+venv/
+testing/
+agents/
+scripts/
+*.md
+*.txt
+!requirements.production.txt
+Dockerfile
+.dockerignore

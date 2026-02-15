@@ -1,0 +1,444 @@
+﻿================================================================================
+                    HEDGE EDGE - PROJECT DOCUMENTATION
+                         MT5 VPS API Backend Server
+================================================================================
+                              Updated: January 25, 2026
+================================================================================
+
+================================================================================
+                         1. OVERVIEW
+================================================================================
+
+This backend repository contains the MT5 VPS API server that connects your
+Hedge Edge web application to MetaTrader 5 for live trading data.
+
+Architecture:
+  [Web Browser]  -->  [Vercel/Frontend]  -->  [Windows VPS]  -->  [MT5 Terminal]
+                            |                      |
+                            v                      v
+                      [Supabase DB]          [Broker Servers]
+
+The VPS server provides:
+- MT5 credential validation
+- Live account balance/equity data
+- Open positions and orders
+- Real-time P/L tracking
+
+================================================================================
+                         2. WHY WINDOWS VPS?
+================================================================================
+
+The MetaTrader 5 Python library ONLY works on Windows. It connects to the
+MT5 terminal application running on the same machine.
+
+Requirements:
+- Windows Server 2022 or Windows 10/11
+- MetaTrader 5 terminal installed and running
+- Python 3.10+ with MetaTrader5 library
+- Port 5000 open for API access
+
+Cost comparison:
+- MetaAPI (cloud service): $50+/month
+- Windows VPS (self-hosted): ~$10-20/month  <-- We chose this!
+
+================================================================================
+                         3. VPS SETUP - STEP BY STEP
+================================================================================
+
+This guide uses Azure VM, but works with any Windows VPS (Hostinger, AWS, etc.)
+
+------------------------------------------------------------------------------
+STEP 1: CREATE WINDOWS VPS
+------------------------------------------------------------------------------
+
+Option A: Azure VM (what we use)
+  1. Go to https://portal.azure.com
+  2. Create a resource > Virtual Machine
+  3. Settings:
+     - Image: Windows Server 2022 Datacenter
+     - Size: Standard_B2s (2 vCPU, 4GB RAM) - ~$30/month
+     - Username/Password: Save these!
+  4. Networking: Allow RDP (port 3389)
+  5. Create and wait for deployment
+
+Option B: Hostinger VPS (~$10/month)
+  1. Go to https://www.hostinger.com/vps-hosting
+  2. Select KVM 2 plan
+  3. Choose Windows Server 2022
+  4. Get IP + credentials from dashboard
+
+------------------------------------------------------------------------------
+STEP 2: CONNECT TO VPS (Remote Desktop)
+------------------------------------------------------------------------------
+
+On your PC:
+  1. Press Win+R, type "mstsc", press Enter
+  2. Enter VPS IP address
+  3. Enter username and password
+  4. Connect (accept certificate warning)
+
+------------------------------------------------------------------------------
+STEP 3: INSTALL METATRADER 5
+------------------------------------------------------------------------------
+
+On the VPS:
+  1. Open Edge browser
+  2. Go to: https://www.metatrader5.com/en/download
+  3. Download MT5 for Windows
+  4. Install to default location (C:\Program Files\MetaTrader 5)
+  5. Launch MT5
+  6. Create a demo account or login to existing account
+  7. KEEP MT5 RUNNING (minimize, don't close)
+
+IMPORTANT: MT5 terminal MUST be running for the Python API to work!
+
+------------------------------------------------------------------------------
+STEP 4: INSTALL PYTHON
+------------------------------------------------------------------------------
+
+On the VPS (PowerShell as Administrator):
+
+# Download Python 3.12
+Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe" -OutFile "python-installer.exe"
+
+# Install Python (silent, add to PATH)
+.\python-installer.exe /quiet InstallAllUsers=1 PrependPath=1
+
+# Restart PowerShell, then verify
+python --version
+
+------------------------------------------------------------------------------
+STEP 5: CREATE SERVER FOLDER AND FILES
+------------------------------------------------------------------------------
+
+# Create folder
+New-Item -ItemType Directory -Path "C:\MT5Server" -Force
+Set-Location "C:\MT5Server"
+
+# Install Python packages
+pip install MetaTrader5 Flask Flask-CORS python-dotenv
+
+------------------------------------------------------------------------------
+STEP 6: CREATE THE SERVER FILE
+------------------------------------------------------------------------------
+
+Create file: C:\MT5Server\mt5_vps_server.py
+
+Copy the ENTIRE contents of mt5_vps_server.py from this repository into that file.
+You can use Notepad: notepad C:\MT5Server\mt5_vps_server.py
+
+------------------------------------------------------------------------------
+STEP 7: CREATE ENVIRONMENT FILE
+------------------------------------------------------------------------------
+
+Create file: C:\MT5Server\.env
+
+Using PowerShell (to avoid encoding issues):
+
+[System.IO.File]::WriteAllText("C:\MT5Server\.env", "MT5_API_KEY=hedge-edge-mt5-api-key-2026-secure")
+
+Replace the API key with your own secure key (use https://randomkeygen.com)
+
+------------------------------------------------------------------------------
+STEP 8: OPEN FIREWALL PORT
+------------------------------------------------------------------------------
+
+For Azure VM:
+  1. Go to Azure Portal > Your VM > Networking
+  2. Add inbound port rule:
+     - Destination port: 5000
+     - Protocol: TCP
+     - Action: Allow
+     - Name: MT5-API
+  3. Save
+
+For Windows Firewall (on VPS):
+  netsh advfirewall firewall add rule name="MT5 API" dir=in action=allow protocol=tcp localport=5000
+
+------------------------------------------------------------------------------
+STEP 9: START THE SERVER
+------------------------------------------------------------------------------
+
+cd C:\MT5Server
+python mt5_vps_server.py
+
+You should see:
+  ============================================================
+  MT5 VPS API Server - Multi-Account
+  ============================================================
+  API Key: hedge-edge...
+  MT5 Path: C:\Program Files\MetaTrader 5\terminal64.exe
+  ============================================================
+  Starting server on http://0.0.0.0:5000
+  MT5 initialized successfully
+  ============================================================
+
+------------------------------------------------------------------------------
+STEP 10: TEST THE SERVER
+------------------------------------------------------------------------------
+
+From your local PC browser, go to:
+  http://YOUR_VPS_IP:5000/api/health
+
+Should return:
+  {"status":"healthy","mt5_connected":true,"timestamp":"..."}
+
+If mt5_connected is false:
+  - Make sure MT5 terminal is open on VPS
+  - Login to any account in MT5 first
+
+------------------------------------------------------------------------------
+STEP 11: CONFIGURE FRONTEND
+------------------------------------------------------------------------------
+
+In your frontend .env file:
+
+VITE_MT5_VPS_URL="http://YOUR_VPS_IP:5000"
+VITE_MT5_API_KEY="hedge-edge-mt5-api-key-2026-secure"
+
+Make sure the API key matches EXACTLY what you set on the VPS!
+
+================================================================================
+                         4. KEEPING THE SERVER RUNNING
+================================================================================
+
+The server needs to stay running. Options:
+
+Option A: Keep RDP session open (easiest for testing)
+  - Just minimize RDP, don't close it
+  - Server keeps running in PowerShell
+
+Option B: Run as background task
+  Start-Process -NoNewWindow python -ArgumentList "mt5_vps_server.py"
+
+Option C: Install as Windows Service (recommended for production)
+  See install_service.ps1 in vps-deployment folder
+
+Option D: Use Task Scheduler
+  1. Open Task Scheduler on VPS
+  2. Create Basic Task
+  3. Trigger: At startup
+  4. Action: Start a program
+     - Program: python
+     - Arguments: C:\MT5Server\mt5_vps_server.py
+     - Start in: C:\MT5Server
+
+================================================================================
+                         5. API ENDPOINTS
+================================================================================
+
+All endpoints except /api/health require X-API-Key header.
+
+------------------------------------------------------------------------------
+GET /api/health
+------------------------------------------------------------------------------
+Health check (no authentication required)
+
+Response:
+{
+  "status": "healthy",
+  "mt5_connected": true,
+  "timestamp": "2026-01-25T15:00:00"
+}
+
+------------------------------------------------------------------------------
+POST /api/validate
+------------------------------------------------------------------------------
+Validate MT5 credentials
+
+Headers:
+  X-API-Key: your-api-key
+
+Request Body:
+{
+  "login": "12345678",
+  "password": "your-mt5-password",
+  "server": "MetaQuotes-Demo"
+}
+
+Success Response:
+{
+  "success": true,
+  "valid": true,
+  "account": {
+    "login": 12345678,
+    "name": "John Doe",
+    "broker": "MetaQuotes Software Corp.",
+    "server": "MetaQuotes-Demo",
+    "currency": "USD",
+    "balance": 10000.00,
+    "equity": 10000.00,
+    "leverage": 100
+  }
+}
+
+Error Response:
+{
+  "success": false,
+  "valid": false,
+  "error": "Login failed: (2, 'Invalid account')"
+}
+
+------------------------------------------------------------------------------
+POST /api/account/snapshot
+------------------------------------------------------------------------------
+Get full account data with positions
+
+Headers:
+  X-API-Key: your-api-key
+
+Request Body:
+{
+  "login": "12345678",
+  "password": "your-mt5-password",
+  "server": "MetaQuotes-Demo"
+}
+
+Response:
+{
+  "success": true,
+  "data": {
+    "login": 12345678,
+    "server": "MetaQuotes-Demo",
+    "name": "John Doe",
+    "broker": "MetaQuotes Software Corp.",
+    "currency": "USD",
+    "balance": 10000.00,
+    "equity": 10150.00,
+    "margin": 500.00,
+    "margin_free": 9650.00,
+    "margin_level": 2030.00,
+    "profit": 150.00,
+    "leverage": 100,
+    "positions": [
+      {
+        "ticket": 123456,
+        "symbol": "EURUSD",
+        "type": "BUY",
+        "volume": 0.1,
+        "price_open": 1.08500,
+        "price_current": 1.08650,
+        "profit": 150.00,
+        "swap": 0,
+        "commission": 0,
+        "sl": 1.08000,
+        "tp": 1.09000,
+        "time": "2026-01-25T10:00:00",
+        "magic": 0,
+        "comment": ""
+      }
+    ],
+    "positions_count": 1,
+    "orders": [],
+    "orders_count": 0,
+    "timestamp": "2026-01-25T15:00:00"
+  }
+}
+
+------------------------------------------------------------------------------
+POST /api/account/balance
+------------------------------------------------------------------------------
+Quick balance check (faster than full snapshot)
+
+Same request format as /api/account/snapshot
+
+Response:
+{
+  "success": true,
+  "data": {
+    "login": 12345678,
+    "balance": 10000.00,
+    "equity": 10150.00,
+    "margin": 500.00,
+    "margin_free": 9650.00,
+    "profit": 150.00,
+    "positions_count": 1,
+    "timestamp": "2026-01-25T15:00:00"
+  }
+}
+
+================================================================================
+                         6. TROUBLESHOOTING
+================================================================================
+
+ISSUE: "MT5 not initialized"
+---------------------------------------
+- Make sure MT5 terminal is OPEN on VPS
+- Login to any account in MT5 (even demo)
+- Test: python -c "import MetaTrader5 as mt5; print(mt5.initialize())"
+
+ISSUE: "Invalid API key"
+---------------------------------------
+- Check .env file encoding (use UTF-8 without BOM)
+- Fix with: [System.IO.File]::WriteAllText("C:\MT5Server\.env", "MT5_API_KEY=your-key")
+- Restart server after changes
+
+ISSUE: "Login failed"
+---------------------------------------
+- Verify MT5 credentials are correct
+- Server name must match EXACTLY (case-sensitive)
+- Try logging in manually in MT5 first
+
+ISSUE: Cannot connect to VPS
+---------------------------------------
+- Check firewall port 5000 is open (Azure portal + Windows firewall)
+- Verify VPS is running
+- Test with: http://VPS_IP:5000/api/health
+
+ISSUE: Server crashes after RDP disconnect
+---------------------------------------
+- Keep RDP session open (minimize, don't close)
+- Or install as Windows Service
+- Or use Task Scheduler to restart on crash
+
+================================================================================
+                         7. ENVIRONMENT VARIABLES
+================================================================================
+
+VPS Server (.env):
+  MT5_API_KEY=your-secure-api-key
+  MT5_PATH=C:\Program Files\MetaTrader 5\terminal64.exe  (optional)
+
+Frontend (.env):
+  VITE_MT5_VPS_URL=http://YOUR_VPS_IP:5000
+  VITE_MT5_API_KEY=your-secure-api-key  (must match VPS)
+
+================================================================================
+                         8. FILE STRUCTURE
+================================================================================
+
+Hedge-Edge-Back-end/
+ mt5_vps_server.py        # Main VPS server (use this on VPS)
+ mt5_api_server.py        # Local development server
+ requirements.txt         # Python dependencies
+ .env.example             # Environment template
+ .gitignore               # Git ignore rules
+ PROJECT_DOCUMENTATION.txt # This file
+ vps-deployment/          # Deployment package
+    setup_vps.ps1        # Automated setup script
+    install_service.ps1  # Windows service installer
+    README.md            # Quick deployment guide
+ supabase/
+     config.toml          # Supabase config
+     migrations/          # Database migrations
+
+================================================================================
+                         9. SECURITY NOTES
+================================================================================
+
+- NEVER commit .env files to Git
+- Use strong API keys (64+ characters)
+- Consider HTTPS for production (nginx reverse proxy)
+- MT5 passwords are never stored, only used for validation
+- Rate limiting is enabled (60 requests/minute per IP)
+
+================================================================================
+                        10. RELATED REPOSITORIES
+================================================================================
+
+Frontend: https://github.com/Ryko1141/Hedge-Edge-Front-End
+Backend:  https://github.com/Ryko1141/Hedge-Edge-Back-end
+
+================================================================================
+                            END OF DOCUMENTATION
+================================================================================

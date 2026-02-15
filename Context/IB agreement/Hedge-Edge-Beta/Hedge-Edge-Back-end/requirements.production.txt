@@ -1,0 +1,30 @@
+# Hedge Edge License API - Production Dependencies
+# Python 3.11+ required
+
+# Web Framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+
+# CORS & Security
+python-multipart==0.0.20
+
+# Rate Limiting
+slowapi==0.1.9
+
+# Database
+supabase==2.3.4
+
+# Environment
+python-dotenv==1.0.0
+
+# HTTP Client (for Supabase)
+httpx==0.28.1
+
+# Logging
+python-json-logger==2.0.7
+
+# Monitoring
+sentry-sdk[fastapi]==2.19.2
+# TODO: Wire up prometheus-client instrumentation (see FIX-03)
+# prometheus-client==0.21.1

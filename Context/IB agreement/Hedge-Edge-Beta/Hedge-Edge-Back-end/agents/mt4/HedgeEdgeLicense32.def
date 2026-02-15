@@ -1,0 +1,15 @@
+; HedgeEdgeLicense32.def
+; Module definition file for Hedge Edge License DLL (32-bit for MT4)
+; Defines exported functions for MT4 EA import
+
+LIBRARY HedgeEdgeLicense32
+EXPORTS
+    InitializeLibrary       @1
+    ShutdownLibrary         @2
+    SetEndpoint             @3
+    ValidateLicense         @4
+    GetCachedToken          @5
+    IsTokenValid            @6
+    GetTokenTTL             @7
+    ClearCache              @8
+    GetLastErrorMsg         @9

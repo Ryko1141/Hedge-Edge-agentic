@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+
+# Python virtual environments
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+
+# Build outputs
+dist/
+dist-electron/
+build/release/
+*.exe
+*.app
+
+# Compiled binaries & native libraries
+*.ex5
+*.dll
+*.so
+*.dylib
+
+# Environment files (contain secrets)
+.env
+.env.local
+.env.*.local
+backend/.env.mt5
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+session-logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Electron
+out/
+
+# Build (front-end)
+build/
+
+# PyInstaller / standalone agent builds
+standalone/
+*.spec
+
+# Test scripts
+zmq_listener_test.mjs
+zmq_test2.mjs
+
+# Lock files (use package-lock.json instead)
+bun.lockb

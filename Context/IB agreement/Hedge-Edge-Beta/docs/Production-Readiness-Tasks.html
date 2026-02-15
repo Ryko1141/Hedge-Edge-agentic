@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hedge Edge App — Production Readiness Tasks</title>
+<style>
+  @page { margin: 1.5cm 2cm; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    padding: 40px 50px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .header {
+    border-bottom: 3px solid #0f172a;
+    padding-bottom: 18px;
+    margin-bottom: 10px;
+  }
+  .header h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+  }
+  .header .subtitle {
+    font-size: 11pt;
+    color: #475569;
+    margin-top: 4px;
+  }
+  .meta {
+    display: flex;
+    gap: 30px;
+    font-size: 9.5pt;
+    color: #64748b;
+    margin-bottom: 25px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .meta span { white-space: nowrap; }
+  .meta strong { color: #334155; }
+
+  h2 {
+    font-size: 14pt;
+    color: #0f172a;
+    margin-top: 28px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #e2e8f0;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 11.5pt;
+    color: #1e293b;
+    margin-top: 16px;
+    margin-bottom: 6px;
+    page-break-after: avoid;
+  }
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .critical { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+  .high { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+  .medium { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 16px 0;
+    font-size: 9.5pt;
+    page-break-inside: auto;
+  }
+  thead { background: #f8fafc; }
+  th {
+    text-align: left;
+    padding: 7px 10px;
+    font-weight: 600;
+    color: #334155;
+    border-bottom: 2px solid #cbd5e1;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td:first-child {
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+    width: 50px;
+  }
+  td:nth-child(2) {
+    font-weight: 600;
+    color: #1e293b;
+    width: 220px;
+  }
+  .task-name { white-space: nowrap; }
+  code {
+    background: #f1f5f9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+    font-size: 8.5pt;
+    color: #6366f1;
+  }
+  .summary-table {
+    margin-top: 20px;
+  }
+  .summary-table th { background: #0f172a; color: white; }
+  .summary-table td { font-size: 10pt; }
+  .summary-table tr:last-child td {
+    font-weight: 700;
+    border-top: 2px solid #0f172a;
+    font-size: 10.5pt;
+  }
+
+  .context-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #6366f1;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 12px 0 20px;
+    font-size: 9.5pt;
+    color: #334155;
+  }
+  .context-box strong { color: #1e293b; }
+
+  .note-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 4px solid #f59e0b;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 9.5pt;
+  }
+  .note-box strong { color: #92400e; }
+
+  .footer {
+    margin-top: 32px;
+    padding-top: 12px;
+    border-top: 2px solid #e2e8f0;
+    font-size: 8.5pt;
+    color: #94a3b8;
+    text-align: center;
+  }
+
+  @media print {
+    body { padding: 0; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Hedge Edge App</h1>
+  <div class="subtitle">Production Readiness — Task Specification Document</div>
+</div>
+
+<div class="meta">
+  <span><strong>Date:</strong> February 10, 2026</span>
+  <span><strong>Repo:</strong> github.com/Ryko1141/Hegde-app</span>
+  <span><strong>Payment Provider:</strong> Creem.io (MoR)</span>
+  <span><strong>Status:</strong> Pre-Production Audit</span>
+</div>
+
+<div class="context-box">
+  <strong>Context:</strong> Hedge Edge is an Electron + React desktop application for managing hedged trading across MT5, MT4, and cTrader platforms.
+  The back-end is a FastAPI license validation API (Python) deployed at <code>api.hedge-edge.com</code>.
+  This document lists all tasks required to bring the app from its current development state to production-ready, organized by priority.
+  <strong>Creem.io</strong> is the chosen Merchant of Record for payments, subscription billing, and license key generation/validation.
+</div>
+
+<!-- =============================================================== -->
+<h2><span class="phase-badge critical">CRITICAL</span> Phase 1 — Must Complete Before Any Release</h2>
+<!-- =============================================================== -->
+
+<h3>1. Integrate Creem.io for Payments &amp; License Keys</h3>
+<div class="note-box">
+  <strong>⚠ Key Change:</strong> The current license system is entirely custom-built against Supabase tables and <code>api.hedge-edge.com</code>.
+  There is <strong>zero Creem integration</strong> in the codebase today. This is the largest workstream (~2 weeks alone).
+  Creem API endpoints: <code>POST /v1/licenses/activate</code>, <code>POST /v1/licenses/validate</code>, <code>POST /v1/licenses/deactivate</code>.
+  Auth via <code>x-api-key</code> header. Test mode: <code>https://test-api.creem.io</code>, Production: <code>https://api.creem.io</code>.
+</div>
+
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>1.1</td><td class="task-name">Create Creem product(s)</td><td>Set up product(s) in Creem dashboard with <strong>License Key Management</strong> enabled, activation limits (e.g., 3 devices), and expiration periods per plan tier.</td></tr>
+    <tr><td>1.2</td><td class="task-name">Install Creem SDK</td><td><code>npm install creem_io</code> in front-end. Add <code>CREEM_API_KEY</code> and <code>CREEM_WEBHOOK_SECRET</code> to env configuration.</td></tr>
+    <tr><td>1.3</td><td class="task-name">Rewrite <code>license-manager.ts</code></td><td>Replace custom <code>api.hedge-edge.com</code> API calls with Creem's <code>/v1/licenses/activate</code>, <code>/v1/licenses/validate</code>, <code>/v1/licenses/deactivate</code>. Map Creem response fields (<code>status</code>, <code>activation</code>, <code>activation_limit</code>, <code>expires_at</code>, <code>instance</code>) to existing <code>LicenseResult</code> type.</td></tr>
+    <tr><td>1.4</td><td class="task-name">Rewrite <code>license-store.ts</code></td><td>Store Creem <code>instance_id</code> (returned from activation) instead of custom session tokens. Persist <code>key</code> + <code>instance_id</code> pair for subsequent validation calls.</td></tr>
+    <tr><td>1.5</td><td class="task-name">Rewrite <code>webrequest-proxy.ts</code></td><td>The local HTTP proxy at <code>127.0.0.1:9089</code> intercepts MT5 WebRequests for license checks — update to forward to Creem API instead of <code>api.hedge-edge.com</code>.</td></tr>
+    <tr><td>1.6</td><td class="task-name">Refactor <code>license_api_production.py</code></td><td>Convert from custom Supabase license tables to a thin proxy calling Creem REST API, <strong>or</strong> remove entirely if the Electron app + WebRequest proxy call Creem directly. Keep <code>/health</code> endpoint for monitoring.</td></tr>
+    <tr><td>1.7</td><td class="task-name">Build checkout/purchase flow</td><td>In-app purchase flow: open Creem checkout URL via <code>shell.openExternal()</code>. Handle return via deep link (<code>hedgeedge://</code> protocol) or manual license key entry after purchase. Creem auto-generates keys on <code>checkout.completed</code>.</td></tr>
+    <tr><td>1.8</td><td class="task-name">Deploy webhook handler</td><td>Endpoint to receive Creem webhooks: <code>checkout.completed</code> (new license), <code>subscription.canceled</code> (revoke access), <code>subscription.expired</code>, <code>subscription.past_due</code>. Verify <code>creem-signature</code> header with HMAC-SHA256.</td></tr>
+    <tr><td>1.9</td><td class="task-name">Update MT5/MT4/cTrader EAs</td><td>MQL5 EA currently calls <code>api.hedge-edge.com</code> via WebRequest. Update to call Creem API directly, <em>or</em> keep WebRequest proxy path that now forwards to Creem. EA must send <code>key</code> + <code>instance_name</code> (device ID).</td></tr>
+    <tr><td>1.10</td><td class="task-name">Migrate existing test keys</td><td>Any beta users need to be migrated to Creem-issued license keys. Document migration process.</td></tr>
+  </tbody>
+</table>
+
+<h3>2. Remove Debug &amp; Development Code</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>2.1</td><td class="task-name">Remove Desktop debug log</td><td><code>electron/main.ts</code> line 9 writes <code>hedge-edge-debug.log</code> to user's Desktop folder. Must be removed or replaced with proper logging (see Task 8.1).</td></tr>
+    <tr><td>2.2</td><td class="task-name">Clean demo mode fallbacks</td><td><code>src/hooks/useTradingAccounts.ts</code> has 6 occurrences of <code>demo mode</code> localStorage fallbacks that could confuse production users.</td></tr>
+    <tr><td>2.3</td><td class="task-name">Archive mock license server</td><td><code>license_api_server.py</code> is a Flask mock with empty <code>TEST_LICENSES = {}</code> — archive or delete from production codebase.</td></tr>
+  </tbody>
+</table>
+
+<h3>3. Error Monitoring &amp; Crash Reporting</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>3.1</td><td class="task-name">Initialize Sentry (back-end)</td><td><code>sentry-sdk[fastapi]</code> is in <code>requirements.production.txt</code> but <strong>never initialized</strong> in code. Add <code>sentry_sdk.init(dsn=...)</code> call in <code>license_api_production.py</code>.</td></tr>
+    <tr><td>3.2</td><td class="task-name">Add Sentry (Electron main)</td><td>Install <code>@sentry/electron</code>. Initialize in <code>main.ts</code> for crash reporting, unhandled promise rejections, and native crash collection.</td></tr>
+    <tr><td>3.3</td><td class="task-name">Add Sentry (React renderer)</td><td>Install <code>@sentry/react</code>. Wrap <code>App</code> with Sentry error boundary for front-end error tracking and session replay.</td></tr>
+    <tr><td>3.4</td><td class="task-name">Wire up security logging</td><td>TODO at <code>src/lib/security.ts:595</code> — connect to a remote logging service for security events.</td></tr>
+  </tbody>
+</table>
+
+<h3>4. Auto-Update System</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>4.1</td><td class="task-name">Install electron-updater</td><td><code>npm install electron-updater</code> — currently <strong>missing entirely</strong> despite <code>publish</code> config in package.json pointing to GitHub.</td></tr>
+    <tr><td>4.2</td><td class="task-name">Implement auto-update logic</td><td>Add <code>autoUpdater</code> from <code>electron-updater</code> in <code>main.ts</code>: check-on-launch, download progress events, install-on-quit behavior.</td></tr>
+    <tr><td>4.3</td><td class="task-name">Add update UI</td><td>Notification toast/modal in React when update is available → downloading → ready to install.</td></tr>
+    <tr><td>4.4</td><td class="task-name">Configure GitHub Releases</td><td>Verify <code>hedgeedge/hedge-edge-desktop</code> repo exists, or update <code>publish</code> block in <code>package.json</code> to point to correct repo for release artifacts.</td></tr>
+  </tbody>
+</table>
+
+<h3>5. Fix Deployment Configuration</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>5.1</td><td class="task-name">Fix render.yaml paths</td><td><code>buildCommand</code> references <code>backend/</code> but actual folder is <code>Hedge-Edge-Back-end/</code>. Will fail on deploy.</td></tr>
+    <tr><td>5.2</td><td class="task-name">Fix CORS origins</td><td><code>http://localhost:*</code> is <strong>invalid CORS syntax</strong> in <code>license_api_production.py</code>. Use regex-based origin matching or explicit port list.</td></tr>
+    <tr><td>5.3</td><td class="task-name">Enable custom domain</td><td>Uncomment and configure <code>api.hedge-edge.com</code> in <code>railway.toml</code>. Set up DNS records.</td></tr>
+    <tr><td>5.4</td><td class="task-name">Deploy license API</td><td>Deploy back-end to Railway/Render with proper env vars (<code>SUPABASE_URL</code>, <code>SUPABASE_SERVICE_KEY</code>, <code>CREEM_API_KEY</code>, <code>SENTRY_DSN</code>).</td></tr>
+  </tbody>
+</table>
+
+<!-- =============================================================== -->
+<h2><span class="phase-badge high">HIGH</span> Phase 2 — Complete Before Public Release</h2>
+<!-- =============================================================== -->
+
+<h3>6. Code Signing &amp; Build Pipeline</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>6.1</td><td class="task-name">Windows EV code signing cert</td><td>Purchase from DigiCert/Sectigo. Required to avoid SmartScreen "Unknown Publisher" warnings. Set <code>CSC_LINK</code> + <code>CSC_KEY_PASSWORD</code> env vars.</td></tr>
+    <tr><td>6.2</td><td class="task-name">Apple Developer ID certificate</td><td>Ensure <code>APPLE_ID</code>, <code>APPLE_APP_SPECIFIC_PASSWORD</code>, <code>APPLE_TEAM_ID</code> are configured. Notarization script (<code>scripts/notarize.js</code>) already exists.</td></tr>
+    <tr><td>6.3</td><td class="task-name">Set up GitHub Actions CI/CD</td><td>No CI/CD pipeline exists. Create workflows for: lint → test → build (Win/Mac/Linux) → sign → publish to GitHub Releases.</td></tr>
+    <tr><td>6.4</td><td class="task-name">Automate release process</td><td>Tag-based workflow: <code>git tag v1.0.0</code> triggers full build + sign + publish + auto-update feed generation.</td></tr>
+  </tbody>
+</table>
+
+<h3>7. Testing Infrastructure</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>7.1</td><td class="task-name">Add Vitest to front-end</td><td><strong>Zero automated unit tests exist.</strong> No <code>"test"</code> script in <code>package.json</code>. Configure Vitest + React Testing Library.</td></tr>
+    <tr><td>7.2</td><td class="task-name">Unit tests — critical modules</td><td>Priority targets: <code>license-manager.ts</code>, <code>copier-engine.ts</code>, <code>session-manager.ts</code>, <code>daily-limit-tracker.ts</code>.</td></tr>
+    <tr><td>7.3</td><td class="task-name">React component tests</td><td>Test critical UI: license activation panel, account cards, copier group config, settings page.</td></tr>
+    <tr><td>7.4</td><td class="task-name">Playwright E2E tests</td><td>Test critical flows: license activation → account connection → trade copier setup → hedge map display.</td></tr>
+    <tr><td>7.5</td><td class="task-name">Back-end API tests</td><td>Proper pytest suite for <code>license_api_production.py</code> endpoints with mocked Creem API responses.</td></tr>
+  </tbody>
+</table>
+
+<h3>8. Production Logging</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>8.1</td><td class="task-name">Install electron-log</td><td>Replace all <code>console.log</code> in Electron main process with structured, rotated file logging. Ship logs alongside Sentry context.</td></tr>
+    <tr><td>8.2</td><td class="task-name">Configure log rotation</td><td>Prevent log files from growing unbounded on user machines. Default: 5 MB max, 3 rotated files.</td></tr>
+    <tr><td>8.3</td><td class="task-name">Remote log shipping (opt-in)</td><td>Optional telemetry for crash diagnostics with explicit user consent toggle in Settings.</td></tr>
+    <tr><td>8.4</td><td class="task-name">Backend: JSON structured logs</td><td><code>python-json-logger</code> is installed but unused. Initialize for production structured logging.</td></tr>
+    <tr><td>8.5</td><td class="task-name">Backend: Prometheus metrics</td><td><code>prometheus-client</code> is installed but unused. Add <code>/metrics</code> endpoint for request counts, latency, error rates.</td></tr>
+  </tbody>
+</table>
+
+<h3>9. Configuration Hardening</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>9.1</td><td class="task-name">Make API URL configurable</td><td><code>https://api.hedge-edge.com</code> is hardcoded in 4+ files (<code>license-manager.ts</code>, <code>license-store.ts</code>, <code>webrequest-proxy.ts</code>, <code>mt5-webrequest-helper.ts</code>). Extract to env variable / build-time config.</td></tr>
+    <tr><td>9.2</td><td class="task-name">Offline license grace period</td><td>App currently fails entirely if API is unreachable. Implement cached last-valid-state with configurable grace window (e.g., 72 hours).</td></tr>
+    <tr><td>9.3</td><td class="task-name">Validate env vars on startup</td><td>Fail fast with clear error messages if required config (Creem API key, Supabase URL) is missing.</td></tr>
+    <tr><td>9.4</td><td class="task-name">Electron-side rate limiting</td><td>Prevent accidental API flooding from client-side retry loops.</td></tr>
+  </tbody>
+</table>
+
+<!-- =============================================================== -->
+<h2><span class="phase-badge medium">MEDIUM</span> Phase 3 — Post-Launch Improvements</h2>
+<!-- =============================================================== -->
+
+<h3>10. Security Hardening</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>10.1</td><td class="task-name">Audit Supabase RLS policies</td><td>Verify Row Level Security is properly configured for all tables (licenses, devices, sessions, copier_notifications).</td></tr>
+    <tr><td>10.2</td><td class="task-name">Encrypt local state files</td><td>Session/copier state stored as plain JSON. Use Electron <code>safeStorage</code> or <code>electron-store</code> with encryption.</td></tr>
+    <tr><td>10.3</td><td class="task-name">Add CSP headers</td><td>Content Security Policy for Electron renderer to prevent script injection attacks.</td></tr>
+    <tr><td>10.4</td><td class="task-name">API key rotation plan</td><td>Document procedure for rotating Creem API keys and Supabase keys without downtime.</td></tr>
+  </tbody>
+</table>
+
+<h3>11. User Experience Polish</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>11.1</td><td class="task-name">First-run onboarding flow</td><td>Guided experience: license entry → platform setup → first account connection → hedge map overview.</td></tr>
+    <tr><td>11.2</td><td class="task-name">In-app help content</td><td>Help page route exists but content quality/completeness is unverified. Add MT5 EA installation walkthrough.</td></tr>
+    <tr><td>11.3</td><td class="task-name">Error message UX audit</td><td>Ensure all error states show user-friendly messages, not raw API errors or stack traces.</td></tr>
+    <tr><td>11.4</td><td class="task-name">License plan management</td><td>Show plan details, renewal date, upgrade path. Link to Creem customer portal for self-service billing.</td></tr>
+  </tbody>
+</table>
+
+<h3>12. Monitoring &amp; Operations</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>12.1</td><td class="task-name">Uptime monitoring</td><td>Set up UptimeRobot/Better Uptime for <code>api.hedge-edge.com/health</code> endpoint. Alert on downtime.</td></tr>
+    <tr><td>12.2</td><td class="task-name">Sentry alerting rules</td><td>Configure alerts for error rate spikes, new issue types, and unhandled exceptions.</td></tr>
+    <tr><td>12.3</td><td class="task-name">Operations runbook</td><td>Document incident response: API outage, license system failure, hotfix deployment process.</td></tr>
+    <tr><td>12.4</td><td class="task-name">Database backup verification</td><td>Verify Supabase backup schedule. Test restore procedure at least once.</td></tr>
+  </tbody>
+</table>
+
+<h3>13. Documentation &amp; Cleanup</h3>
+<table>
+  <thead><tr><th>#</th><th>Task</th><th>Details</th></tr></thead>
+  <tbody>
+    <tr><td>13.1</td><td class="task-name">Update tasks/README.md</td><td>All 7 listed tasks marked "Not Started" but most code is partially/fully implemented. Sync with reality.</td></tr>
+    <tr><td>13.2</td><td class="task-name">Consolidate .env files</td><td>3 separate <code>.env.example</code> files across directories. Create unified setup script or consolidated README.</td></tr>
+    <tr><td>13.3</td><td class="task-name">Fix DEPLOYMENT_GUIDE.md</td><td>References <code>backend/</code> path but actual folder is <code>Hedge-Edge-Back-end/</code>. Multiple stale paths.</td></tr>
+    <tr><td>13.4</td><td class="task-name">End-user documentation</td><td>Installation guide, MT5/MT4/cTrader EA setup, troubleshooting common issues, FAQ.</td></tr>
+    <tr><td>13.5</td><td class="task-name">API versioning strategy</td><td>Document how API versions will be managed as the product evolves (back-end + Creem webhook versions).</td></tr>
+  </tbody>
+</table>
+
+<!-- =============================================================== -->
+<h2>Summary</h2>
+<!-- =============================================================== -->
+
+<table class="summary-table">
+  <thead><tr><th>Priority</th><th>Task Count</th><th>Effort Estimate</th><th>Key Dependency</th></tr></thead>
+  <tbody>
+    <tr><td><span class="phase-badge critical">CRITICAL</span> Phase 1</td><td>22 tasks</td><td>3–4 weeks</td><td>Creem.io account + API key</td></tr>
+    <tr><td><span class="phase-badge high">HIGH</span> Phase 2</td><td>17 tasks</td><td>2–3 weeks</td><td>Code signing certificates</td></tr>
+    <tr><td><span class="phase-badge medium">MEDIUM</span> Phase 3</td><td>14 tasks</td><td>2–3 weeks</td><td>Post-launch user feedback</td></tr>
+    <tr><td><strong>TOTAL</strong></td><td><strong>53 tasks</strong></td><td><strong>7–10 weeks</strong></td><td></td></tr>
+  </tbody>
+</table>
+
+<div class="note-box" style="margin-top: 24px;">
+  <strong>⚠ Biggest Workstream:</strong> The Creem.io integration (Tasks 1.1–1.10) is the single largest effort (~2 weeks).
+  The current license system is entirely custom-built across 4 layers: <strong>React UI → Electron Main → Python API Proxy → MT5/MT4/cTrader EAs</strong>.
+  All four layers must be updated to use Creem's license key activate/validate/deactivate endpoints.
+  Creem handles license key generation automatically on <code>checkout.completed</code> — no need to generate keys yourself.
+</div>
+
+<div class="context-box" style="margin-top: 16px;">
+  <strong>Creem.io API Quick Reference:</strong><br>
+  • Base URL (prod): <code>https://api.creem.io</code> &nbsp;|&nbsp; (test): <code>https://test-api.creem.io</code><br>
+  • Auth: <code>x-api-key: creem_xxx</code> header on all requests<br>
+  • <code>POST /v1/licenses/activate</code> — body: <code>{ key, instance_name }</code> → returns <code>{ id, status, key, activation, activation_limit, expires_at, instance }</code><br>
+  • <code>POST /v1/licenses/validate</code> — body: <code>{ key, instance_id }</code> → returns same schema, check <code>status</code> = <code>"active"</code><br>
+  • <code>POST /v1/licenses/deactivate</code> — body: <code>{ key, instance_id }</code> → frees activation slot<br>
+  • Webhook events: <code>checkout.completed</code>, <code>subscription.active</code>, <code>subscription.paid</code>, <code>subscription.canceled</code>, <code>subscription.expired</code><br>
+  • Webhook signature: HMAC-SHA256 of request body, sent in <code>creem-signature</code> header<br>
+  • Pricing: 3.9% + 40¢ per transaction (flat, no hidden fees). MoR handles tax compliance globally.
+</div>
+
+<div class="footer">
+  Hedge Edge Production Readiness Tasks v1.0 — Generated February 10, 2026 — Confidential
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+# Render Configuration for Hedge Edge License API
+# https://render.com
+# This file should be named render.yaml in the repository root
+
+services:
+  - type: web
+    name: hedge-edge-license-api
+    env: python
+    region: oregon  # or: ohio, frankfurt, singapore
+    plan: starter  # or: standard, pro
+    buildCommand: pip install -r Hedge-Edge-Back-end/requirements.production.txt
+    startCommand: cd Hedge-Edge-Back-end && uvicorn license_api_production:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /health
+    
+    # Auto-deploy on push to main branch
+    autoDeploy: true
+    
+    # Environment variables (set in Render dashboard for secrets)
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.7"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: RATE_LIMIT
+        value: "100/minute"
+      - key: TOKEN_TTL_SECONDS
+        value: "3600"
+      - key: TOKEN_REFRESH_THRESHOLD
+        value: "300"
+      - key: ENVIRONMENT
+        value: production
+      - key: CREEM_API_MODE
+        value: live
+      - key: MAX_DAILY_REQUESTS
+        value: "10000"
+      # Secrets - set these in Render dashboard, not here
+      - key: SUPABASE_URL
+        sync: false  # Must be set in dashboard
+      - key: SUPABASE_SERVICE_KEY
+        sync: false  # Must be set in dashboard
+      - key: CREEM_API_KEY
+        sync: false  # Must be set in dashboard
+      - key: CREEM_WEBHOOK_SECRET
+        sync: false  # Must be set in dashboard
+      - key: SENTRY_DSN
+        sync: false  # Must be set in dashboard
+      - key: IP_HASH_SALT
+        generateValue: true
+    
+    # Scaling (for standard/pro plans)
+    # scaling:
+    #   minInstances: 1
+    #   maxInstances: 3
+    #   targetMemoryPercent: 80
+    #   targetCPUPercent: 80

@@ -1,0 +1,173 @@
+{
+	"folders": [
+		{
+			"name": "🏠 Hedge Edge (Root)",
+			"path": "."
+		},
+		{
+			"name": "━━━━━━━━━━ 🎨 FRONT-END ━━━━━━━━━━",
+			"path": ".sections/front-end"
+		},
+		{
+			"name": "    📱 Desktop App (Electron + React)",
+			"path": "Hedge-Edge-Front-end"
+		},
+		{
+			"name": "    🧪 UI Testing",
+			"path": "Hedge-Edge-Front-end/testing/ui"
+		},
+		{
+			"name": "━━━━━━━━━━ ⚙️ BACK-END ━━━━━━━━━━",
+			"path": ".sections/back-end"
+		},
+		{
+			"name": "    🔌 API Server (Python/FastAPI)",
+			"path": "Hedge-Edge-Back-end"
+		},
+		{
+			"name": "    🤖 Trading Agents (MT4/MT5/cTrader)",
+			"path": "Hedge-Edge-Back-end/agents"
+		},
+		{
+			"name": "    🧪 API Testing",
+			"path": "Hedge-Edge-Back-end/testing/api"
+		},
+		{
+			"name": "    🔧 Agent Build Scripts",
+			"path": "Hedge-Edge-Back-end/scripts"
+		},
+		{
+			"name": "    🔗 Integration Testing",
+			"path": "testing/integration"
+		},
+		{
+			"name": "━━━━━━━━━━ 📦 SHARED ━━━━━━━━━━",
+			"path": ".sections/shared"
+		},
+		{
+			"name": "    📋 Task Management",
+			"path": "tasks"
+		},
+		{
+			"name": "    🔧 Cross-Project Scripts",
+			"path": "scripts"
+		}
+	],
+	"settings": {
+		"chat.agent.maxRequests": 50,
+		"files.exclude": {
+			"**/node_modules": true,
+			"**/dist": true,
+			"**/dist-electron": true,
+			"**/.git": true,
+			"**/venv": true,
+			"**/__pycache__": true,
+			"**/*.pyc": true
+		},
+		"editor.formatOnSave": true,
+		"typescript.preferences.importModuleSpecifier": "relative",
+		"python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe"
+	},
+	"extensions": {
+		"recommendations": [
+			"dbaeumer.vscode-eslint",
+			"esbenp.prettier-vscode",
+			"ms-python.python",
+			"ms-python.vscode-pylance",
+			"bradlc.vscode-tailwindcss",
+			"dsznajder.es7-react-js-snippets"
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "🎨 FE: Electron Main",
+				"type": "node",
+				"request": "launch",
+				"cwd": "${workspaceFolder}/Hedge-Edge-Front-end",
+				"runtimeExecutable": "${workspaceFolder}/Hedge-Edge-Front-end/node_modules/.bin/electron",
+				"args": [".", "--remote-debugging-port=9222"],
+				"env": {
+					"NODE_ENV": "development"
+				}
+			},
+			{
+				"name": "⚙️ BE: License API Server",
+				"type": "python",
+				"request": "launch",
+				"program": "${workspaceFolder}/Hedge-Edge-Back-end/license_api_server.py",
+				"cwd": "${workspaceFolder}/Hedge-Edge-Back-end",
+				"console": "integratedTerminal"
+			},
+			{
+				"name": "⚙️ BE: QA Integration Tests",
+				"type": "python",
+				"request": "launch",
+				"program": "${workspaceFolder}/testing/integration/qa001_integration_suite.py",
+				"args": ["--verbose", "--mock"],
+				"cwd": "${workspaceFolder}/testing/integration",
+				"console": "integratedTerminal"
+			}
+		],
+		"compounds": [
+			{
+				"name": "🚀 Full Stack (BE + FE)",
+				"configurations": ["⚙️ BE: License API Server", "🎨 FE: Electron Main"]
+			}
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "🎨 FE: Start Electron Dev",
+				"type": "shell",
+				"command": "npm run electron:dev",
+				"options": {
+					"cwd": "${workspaceFolder}/Hedge-Edge-Front-end"
+				},
+				"group": "build"
+			},
+			{
+				"label": "🎨 FE: Start Vite Dev",
+				"type": "shell",
+				"command": "npm run vite:dev",
+				"options": {
+					"cwd": "${workspaceFolder}/Hedge-Edge-Front-end"
+				},
+				"group": "build",
+				"isBackground": true
+			},
+			{
+				"label": "🎨 FE: TypeScript Check",
+				"type": "shell",
+				"command": "npx tsc --noEmit",
+				"options": {
+					"cwd": "${workspaceFolder}/Hedge-Edge-Front-end"
+				},
+				"group": "build",
+				"problemMatcher": "$tsc"
+			},
+			{
+				"label": "⚙️ BE: Start License API Server",
+				"type": "shell",
+				"command": "python license_api_server.py",
+				"options": {
+					"cwd": "${workspaceFolder}/Hedge-Edge-Back-end"
+				},
+				"group": "build",
+				"isBackground": true
+			},
+			{
+				"label": "⚙️ BE: Run Integration Tests",
+				"type": "shell",
+				"command": "python qa001_integration_suite.py --verbose",
+				"options": {
+					"cwd": "${workspaceFolder}/testing/integration"
+				},
+				"group": "test"
+			}
+		]
+	}
+}

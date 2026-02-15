@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-02-01T02:11:32.728756",
+  "screenshots": [
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021046_01_initial_state.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021048_nav_overview.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021051_nav_accounts.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021053_nav_analytics.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021055_nav_trade_copier.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021058_nav_calculator.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021100_nav_settings.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021102_nav_help.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021104_settings_page.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021106_settings_general.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021108_settings_license.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021109_settings_trading.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021111_settings_appearance.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021114_after_tab_navigation.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021116_after_shift_tab.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021118_scroll_down.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021119_scroll_up.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021123_hover_test.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021124_resize_small.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021126_resize_large.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021131_modal_test.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021132_modal_closed.png",
+    "c:\\Users\\sossi\\Hedge-Edge-Front-End\\bin\\test_screenshots\\021132_99_final_state.png"
+  ],
+  "issues": [],
+  "window_size": "1750x1080"
+}

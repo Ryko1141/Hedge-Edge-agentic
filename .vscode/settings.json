@@ -1,0 +1,8 @@
+{
+  "chat.agentSkillsLocations": {
+    "Business Strategist Agent/.agents/skills": true
+  },
+  "chat.promptFilesLocations": {
+    ".github/copilot": true
+  }
+}

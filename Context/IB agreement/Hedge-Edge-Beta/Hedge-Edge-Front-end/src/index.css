@@ -1,0 +1,383 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 224 9% 6%;
+    --foreground: 0 0% 92%;
+
+    --card: 224 9% 6%;
+    --card-foreground: 0 0% 92%;
+
+    --popover: 224 9% 6%;
+    --popover-foreground: 0 0% 92%;
+
+    --primary: 120 100% 54%;
+    --primary-foreground: 224 9% 6%;
+
+    --secondary: 45 100% 56%;
+    --secondary-foreground: 224 9% 6%;
+
+    --muted: 222 10% 11%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 222 10% 11%;
+    --accent-foreground: 0 0% 92%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 92%;
+
+    --border: 120 100% 54% / 0.2;
+    --input: 120 100% 54% / 0.3;
+    --ring: 120 100% 54%;
+
+    --radius: 0.75rem;
+
+    /* HedgeEdge brand colors */
+    --hedge-lime: 120 100% 54%;
+    --hedge-gold: 45 100% 56%;
+    --hedge-ink: 224 9% 6%;
+    --hedge-soft: 0 0% 92%;
+    --hedge-dark: 222 10% 11%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Hide number input spinners */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* Custom Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted) / 0.3);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 3px;
+    transition: background 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: hsl(var(--primary) / 0.7);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.3) hsl(var(--muted) / 0.3);
+  }
+}
+
+@layer utilities {
+  .blur-blob {
+    filter: blur(64px);
+  }
+  
+  .text-shadow-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  /* Enhanced card with glassmorphism */
+  .glass-card {
+    @apply backdrop-blur-xl bg-card/40 border-border/30;
+    box-shadow: 
+      0 0 0 1px hsl(var(--primary) / 0.05),
+      0 4px 24px -4px hsl(var(--background) / 0.5),
+      inset 0 1px 0 0 hsl(var(--foreground) / 0.03);
+  }
+
+  .glass-card:hover {
+    box-shadow: 
+      0 0 0 1px hsl(var(--primary) / 0.15),
+      0 8px 32px -4px hsl(var(--primary) / 0.15),
+      inset 0 1px 0 0 hsl(var(--foreground) / 0.05);
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 20px -4px hsl(var(--primary) / 0.4);
+  }
+
+  .glow-primary-intense {
+    box-shadow: 0 0 30px -4px hsl(var(--primary) / 0.6);
+  }
+
+  /* Button press effect */
+  .btn-press {
+    @apply transition-all duration-150;
+  }
+
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  /* Enhanced float animation - faster and more dynamic */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Fast float animation for energetic background */
+  @keyframes float-fast {
+    0% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-20px) translateX(10px); }
+    50% { transform: translateY(-10px) translateX(-5px); }
+    75% { transform: translateY(-25px) translateX(15px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+
+  .animate-float-fast {
+    animation: float-fast 2.5s ease-in-out infinite;
+  }
+
+  /* Reverse fast float animation */
+  @keyframes float-reverse-fast {
+    0% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(15px) translateX(-12px); }
+    50% { transform: translateY(8px) translateX(8px); }
+    75% { transform: translateY(20px) translateX(-10px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+
+  .animate-float-reverse-fast {
+    animation: float-reverse-fast 2.8s ease-in-out infinite;
+  }
+
+  /* Energetic scanning lines */
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  .animate-scan {
+    animation: scan 8s linear infinite;
+    opacity: 0.05 !important;
+  }
+
+  /* Grid pulse animation */
+  @keyframes grid-pulse {
+    0%, 100% { opacity: 0.04; }
+    50% { opacity: 0.08; }
+  }
+
+  .animate-grid-pulse {
+    animation: grid-pulse 3s ease-in-out infinite;
+  }
+
+  /* Enhanced pulse glow - more intense */
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px -4px hsl(var(--primary) / 0.4);
+      opacity: 0.12;
+    }
+    50% { 
+      box-shadow: 0 0 50px 4px hsl(var(--primary) / 0.7);
+      opacity: 0.18;
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Neon flicker effect */
+  @keyframes neon-flicker {
+    0%, 100% { opacity: 1; }
+    4% { opacity: 0.95; }
+    8% { opacity: 1; }
+    12% { opacity: 0.9; }
+  }
+
+  .animate-neon-flicker {
+    animation: neon-flicker 8s ease-in-out infinite;
+  }
+
+  /* Shimmer effect for skeletons */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  /* Fade in up animation */
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.4s ease-out forwards;
+  }
+
+  /* Scale in animation */
+  @keyframes scale-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.3s ease-out forwards;
+  }
+
+  /* Stagger children animation helper */
+  .stagger-children > * {
+    opacity: 0;
+    animation: fade-in-up 0.4s ease-out forwards;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+
+  /* Gradient border effect */
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+    border-radius: var(--radius);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.5),
+      hsl(var(--secondary) / 0.3),
+      hsl(var(--primary) / 0.1)
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Interactive nav item */
+  .nav-item-interactive {
+    @apply relative overflow-hidden;
+  }
+
+  .nav-item-interactive::before {
+    content: '';
+    @apply absolute inset-0 bg-primary/0 transition-all duration-300;
+  }
+
+  .nav-item-interactive:hover::before {
+    @apply bg-primary/5;
+  }
+
+  .nav-item-interactive.active::before {
+    @apply bg-primary/10;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-rtl {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  .animate-marquee-rtl {
+    animation: marquee-rtl 30s linear infinite;
+  }
+
+  /* Zcal embed mobile responsiveness */
+  .zcal-inline-widget {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .zcal-inline-widget iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 600px;
+  }
+
+  @media (max-width: 768px) {
+    .zcal-inline-widget iframe {
+      min-height: 800px;
+    }
+  }
+}

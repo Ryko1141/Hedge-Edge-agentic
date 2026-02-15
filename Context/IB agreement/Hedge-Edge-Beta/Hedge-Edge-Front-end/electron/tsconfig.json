@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022", "DOM"],
+    "outDir": "../dist-electron",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": true,
+    "types": ["node"],
+    "typeRoots": ["./types", "../node_modules/@types"]
+  },
+  "include": [
+    "main.ts",
+    "agent-config.ts",
+    "agent-supervisor.ts",
+    "zmq-bridge.ts",
+    "agent-channel-reader.ts",
+    "named-pipe-client.ts",
+    "metaapi-proxy.ts",
+    "types/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "preload.ts", "__tests__"]
+}

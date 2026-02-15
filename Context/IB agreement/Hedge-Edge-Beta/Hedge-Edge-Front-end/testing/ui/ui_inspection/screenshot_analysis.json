@@ -1,0 +1,480 @@
+{
+  "total": 26,
+  "issues_count": 22,
+  "results": [
+    {
+      "file": "accessibility_final.png",
+      "size": "1920x1080",
+      "unique_colors": 7329,
+      "white_pct": "0.2%",
+      "black_pct": "55.2%",
+      "issues": []
+    },
+    {
+      "file": "accessibility_tab_navigation.png",
+      "size": "1920x1080",
+      "unique_colors": 7353,
+      "white_pct": "0.2%",
+      "black_pct": "55.1%",
+      "issues": []
+    },
+    {
+      "file": "accounts_add_clicked.png",
+      "size": "1920x1080",
+      "unique_colors": 7535,
+      "white_pct": "0.2%",
+      "black_pct": "86.9%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.9% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "accounts_final.png",
+      "size": "1920x1080",
+      "unique_colors": 7531,
+      "white_pct": "0.2%",
+      "black_pct": "86.9%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.9% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "accounts_page.png",
+      "size": "1920x1080",
+      "unique_colors": 7533,
+      "white_pct": "0.2%",
+      "black_pct": "86.9%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.9% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "analytics_final.png",
+      "size": "1920x1080",
+      "unique_colors": 7210,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "analytics_page.png",
+      "size": "1920x1080",
+      "unique_colors": 7535,
+      "white_pct": "0.2%",
+      "black_pct": "86.9%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.9% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "calculator_page.png",
+      "size": "1920x1080",
+      "unique_colors": 7204,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "calculator_result.png",
+      "size": "1920x1080",
+      "unique_colors": 7206,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "copier_final.png",
+      "size": "1920x1080",
+      "unique_colors": 7207,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "copier_page.png",
+      "size": "1920x1080",
+      "unique_colors": 7208,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "help_expanded.png",
+      "size": "1920x1080",
+      "unique_colors": 7438,
+      "white_pct": "0.2%",
+      "black_pct": "86.7%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.7% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "help_page.png",
+      "size": "1920x1080",
+      "unique_colors": 7436,
+      "white_pct": "0.2%",
+      "black_pct": "86.7%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.7% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "overview_page.png",
+      "size": "1920x1080",
+      "unique_colors": 7531,
+      "white_pct": "0.2%",
+      "black_pct": "86.9%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.9% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "responsive_large.png",
+      "size": "1920x1080",
+      "unique_colors": 6721,
+      "white_pct": "0.2%",
+      "black_pct": "50.6%",
+      "issues": []
+    },
+    {
+      "file": "responsive_medium.png",
+      "size": "1920x1080",
+      "unique_colors": 8888,
+      "white_pct": "0.5%",
+      "black_pct": "83.5%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 83.5% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "responsive_small.png",
+      "size": "1920x1080",
+      "unique_colors": 9025,
+      "white_pct": "0.5%",
+      "black_pct": "83.3%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 83.3% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "responsive_xlarge.png",
+      "size": "1920x1080",
+      "unique_colors": 6618,
+      "white_pct": "0.2%",
+      "black_pct": "50.6%",
+      "issues": []
+    },
+    {
+      "file": "settings_accounts.png",
+      "size": "1920x1080",
+      "unique_colors": 7222,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "settings_appearance.png",
+      "size": "1920x1080",
+      "unique_colors": 7215,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "settings_general.png",
+      "size": "1920x1080",
+      "unique_colors": 7288,
+      "white_pct": "0.2%",
+      "black_pct": "86.6%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.6% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "settings_license.png",
+      "size": "1920x1080",
+      "unique_colors": 7214,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "settings_license_input.png",
+      "size": "1920x1080",
+      "unique_colors": 7444,
+      "white_pct": "0.2%",
+      "black_pct": "86.7%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.7% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "settings_license_validated.png",
+      "size": "1920x1080",
+      "unique_colors": 7441,
+      "white_pct": "0.2%",
+      "black_pct": "86.7%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.7% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "settings_main.png",
+      "size": "1920x1080",
+      "unique_colors": 7208,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "file": "settings_trading.png",
+      "size": "1920x1080",
+      "unique_colors": 7213,
+      "white_pct": "0.2%",
+      "black_pct": "86.8%",
+      "issues": [
+        {
+          "type": "mostly_black",
+          "description": "Screen is 86.8% black/dark",
+          "severity": "warning"
+        }
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.9% black/dark",
+      "severity": "warning",
+      "file": "accounts_add_clicked.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.9% black/dark",
+      "severity": "warning",
+      "file": "accounts_final.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.9% black/dark",
+      "severity": "warning",
+      "file": "accounts_page.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "analytics_final.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.9% black/dark",
+      "severity": "warning",
+      "file": "analytics_page.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "calculator_page.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "calculator_result.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "copier_final.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "copier_page.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.7% black/dark",
+      "severity": "warning",
+      "file": "help_expanded.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.7% black/dark",
+      "severity": "warning",
+      "file": "help_page.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.9% black/dark",
+      "severity": "warning",
+      "file": "overview_page.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 83.5% black/dark",
+      "severity": "warning",
+      "file": "responsive_medium.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 83.3% black/dark",
+      "severity": "warning",
+      "file": "responsive_small.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "settings_accounts.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "settings_appearance.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.6% black/dark",
+      "severity": "warning",
+      "file": "settings_general.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "settings_license.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.7% black/dark",
+      "severity": "warning",
+      "file": "settings_license_input.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.7% black/dark",
+      "severity": "warning",
+      "file": "settings_license_validated.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "settings_main.png"
+    },
+    {
+      "type": "mostly_black",
+      "description": "Screen is 86.8% black/dark",
+      "severity": "warning",
+      "file": "settings_trading.png"
+    }
+  ]
+}

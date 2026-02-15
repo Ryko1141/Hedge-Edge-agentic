@@ -1,0 +1,12 @@
+{
+  "skill_metadata": {
+    "version": "1.0.0",
+    "author": "DOE Framework",
+    "created": "2026-02-05"
+  },
+  "sample_config": {
+    "enabled": true,
+    "options": ["option1", "option2", "option3"]
+  },
+  "notes": "This is a sample data file demonstrating resource inclusion in Agent Skills"
+}

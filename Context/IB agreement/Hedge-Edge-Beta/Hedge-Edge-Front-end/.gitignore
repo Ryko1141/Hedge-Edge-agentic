@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Environment files with secrets
+.env
+.env.local
+.env.mt5
+.env.desktop
+vps-deployment/.env
+
+# Electron build outputs
+dist-electron
+release
+*.exe
+*.dmg
+*.app
+*.AppImage
+*.deb
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

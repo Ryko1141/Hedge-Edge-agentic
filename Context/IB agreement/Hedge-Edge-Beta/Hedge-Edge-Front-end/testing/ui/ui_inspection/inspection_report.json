@@ -1,0 +1,41 @@
+{
+  "timestamp": "2026-02-01T02:32:48.082582",
+  "window_title": "HedgeEdge",
+  "tests_run": 8,
+  "issues_found": 0,
+  "issues": [],
+  "test_results": [
+    {
+      "page": "Overview",
+      "status": "tested"
+    },
+    {
+      "page": "Accounts",
+      "status": "tested"
+    },
+    {
+      "page": "Analytics",
+      "status": "tested"
+    },
+    {
+      "page": "Trade Copier",
+      "status": "tested"
+    },
+    {
+      "page": "Calculator",
+      "status": "tested"
+    },
+    {
+      "page": "Settings",
+      "status": "tested"
+    },
+    {
+      "page": "Help",
+      "status": "tested"
+    },
+    {
+      "test": "Accessibility",
+      "status": "tested"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# Temporary Files Folder
+# ======================
+# This is a scratchpad for intermediate outputs during workflow execution.
+#
+# Rules:
+# - Use for testing and intermediate results only
+# - Do not store permanent data here
+# - Clean up periodically to avoid clutter

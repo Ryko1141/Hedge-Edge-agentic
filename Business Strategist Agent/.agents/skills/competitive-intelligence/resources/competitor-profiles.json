@@ -1,0 +1,329 @@
+{
+  "last_updated": "2026-02-15",
+  "notes": "Feature scores 0-10. Update monthly. Momentum: rising/stable/falling. Ring: direct/adjacent/substitute.",
+  "competitors": [
+    {
+      "name": "Duplikium",
+      "website": "duplikium.com",
+      "ring": "direct",
+      "description": "Cloud-based trade copier for MT4/MT5. Web interface, no desktop install needed.",
+      "pricing": {
+        "free_tier": true,
+        "starter": 20,
+        "pro": 50,
+        "enterprise": 100,
+        "currency": "USD/mo"
+      },
+      "platforms": ["MT4", "MT5"],
+      "features": {
+        "multi_account_copy": 8,
+        "hedge_management": 3,
+        "risk_management": 6,
+        "speed_latency": 6,
+        "ui_ux": 7,
+        "platform_coverage": 5,
+        "automation": 6,
+        "support": 5
+      },
+      "strengths": [
+        "Cloud-based — no install required",
+        "Free tier drives adoption",
+        "Simple setup wizard"
+      ],
+      "weaknesses": [
+        "No real hedge management",
+        "Cloud latency vs local execution",
+        "Limited advanced features"
+      ],
+      "estimated_users": 10000,
+      "momentum": "rising",
+      "threat_level": "high",
+      "differentiation_from_hedge_edge": "General copier vs Hedge Edge's hedge-specific intelligence"
+    },
+    {
+      "name": "Social Trader Tools",
+      "website": "socialtradertools.com",
+      "ring": "direct",
+      "description": "Cloud trade copier with social/community features. Targets signal providers and followers.",
+      "pricing": {
+        "free_tier": false,
+        "starter": 20,
+        "pro": 40,
+        "enterprise": 60,
+        "currency": "USD/mo"
+      },
+      "platforms": ["MT4", "MT5"],
+      "features": {
+        "multi_account_copy": 8,
+        "hedge_management": 2,
+        "risk_management": 5,
+        "speed_latency": 5,
+        "ui_ux": 6,
+        "platform_coverage": 5,
+        "automation": 5,
+        "support": 6
+      },
+      "strengths": [
+        "Social/signal provider marketplace",
+        "Good brand awareness in forex community",
+        "Cloud convenience"
+      ],
+      "weaknesses": [
+        "No hedge strategy engine",
+        "Basic risk controls",
+        "Cloud latency issues under load"
+      ],
+      "estimated_users": 15000,
+      "momentum": "stable",
+      "threat_level": "high",
+      "differentiation_from_hedge_edge": "Social signal focus vs Hedge Edge's prop firm hedge specialization"
+    },
+    {
+      "name": "FX Blue",
+      "website": "fxblue.com",
+      "ring": "adjacent",
+      "description": "Free trade copier and analytics platform. Revenue from premium analytics services.",
+      "pricing": {
+        "free_tier": true,
+        "starter": 0,
+        "pro": 25,
+        "enterprise": null,
+        "currency": "USD/mo"
+      },
+      "platforms": ["MT4", "MT5"],
+      "features": {
+        "multi_account_copy": 7,
+        "hedge_management": 1,
+        "risk_management": 4,
+        "speed_latency": 7,
+        "ui_ux": 4,
+        "platform_coverage": 5,
+        "automation": 3,
+        "support": 3
+      },
+      "strengths": [
+        "Free tier dominates search results",
+        "Excellent analytics tools",
+        "Long track record, trusted"
+      ],
+      "weaknesses": [
+        "Dated UI/UX",
+        "No hedge management at all",
+        "Minimal innovation pace"
+      ],
+      "estimated_users": 50000,
+      "momentum": "stable",
+      "threat_level": "medium",
+      "differentiation_from_hedge_edge": "Analytics-first generalist vs Hedge Edge's execution-first hedge specialist"
+    },
+    {
+      "name": "Local Trade Copier",
+      "website": "intelli4x.com",
+      "ring": "direct",
+      "description": "Desktop MT4/MT5 local trade copier. EA-based, runs on same VPS/machine.",
+      "pricing": {
+        "free_tier": false,
+        "starter": 99,
+        "pro": 149,
+        "enterprise": null,
+        "currency": "USD/one-time"
+      },
+      "platforms": ["MT4", "MT5"],
+      "features": {
+        "multi_account_copy": 7,
+        "hedge_management": 2,
+        "risk_management": 5,
+        "speed_latency": 9,
+        "ui_ux": 3,
+        "platform_coverage": 5,
+        "automation": 4,
+        "support": 5
+      },
+      "strengths": [
+        "One-time payment attractive to some",
+        "Extremely low latency (local)",
+        "Well-known in MT4 community"
+      ],
+      "weaknesses": [
+        "Outdated UI — EA config panels",
+        "No cloud or remote management",
+        "No hedge strategy intelligence"
+      ],
+      "estimated_users": 5000,
+      "momentum": "falling",
+      "threat_level": "low",
+      "differentiation_from_hedge_edge": "Legacy EA tool vs Hedge Edge's modern Electron app with hedge intelligence"
+    },
+    {
+      "name": "MetaCopier",
+      "website": "metacopier.io",
+      "ring": "direct",
+      "description": "Cloud-based copier specifically targeting prop firm traders. Growing fast.",
+      "pricing": {
+        "free_tier": false,
+        "starter": 29,
+        "pro": 59,
+        "enterprise": 99,
+        "currency": "USD/mo"
+      },
+      "platforms": ["MT4", "MT5"],
+      "features": {
+        "multi_account_copy": 7,
+        "hedge_management": 4,
+        "risk_management": 6,
+        "speed_latency": 6,
+        "ui_ux": 7,
+        "platform_coverage": 5,
+        "automation": 5,
+        "support": 6
+      },
+      "strengths": [
+        "Prop firm positioning aligns with market",
+        "Modern interface",
+        "Targeted marketing"
+      ],
+      "weaknesses": [
+        "Cloud latency for hedging",
+        "Still building features",
+        "Smaller community"
+      ],
+      "estimated_users": 3000,
+      "momentum": "rising",
+      "threat_level": "critical",
+      "differentiation_from_hedge_edge": "Direct competitor in prop firm space but cloud-based vs local execution advantage"
+    },
+    {
+      "name": "MT4Copier",
+      "website": "mt4copier.com",
+      "ring": "adjacent",
+      "description": "Simple MT4 trade copier. Budget option. EA-based.",
+      "pricing": {
+        "free_tier": false,
+        "starter": 79,
+        "pro": null,
+        "enterprise": null,
+        "currency": "USD/one-time"
+      },
+      "platforms": ["MT4"],
+      "features": {
+        "multi_account_copy": 5,
+        "hedge_management": 1,
+        "risk_management": 3,
+        "speed_latency": 8,
+        "ui_ux": 2,
+        "platform_coverage": 2,
+        "automation": 2,
+        "support": 3
+      },
+      "strengths": [
+        "Cheap one-time buy",
+        "Works reliably for simple copy"
+      ],
+      "weaknesses": [
+        "MT4 only — declining platform",
+        "No hedge or risk management",
+        "No development activity"
+      ],
+      "estimated_users": 2000,
+      "momentum": "falling",
+      "threat_level": "noise",
+      "differentiation_from_hedge_edge": "Legacy cheap tool vs full-featured hedge management platform"
+    },
+    {
+      "name": "ZuluTrade",
+      "website": "zulutrade.com",
+      "ring": "substitute",
+      "description": "Social trading platform connecting signal providers with followers. Institutional backing.",
+      "pricing": {
+        "free_tier": true,
+        "starter": 0,
+        "pro": null,
+        "enterprise": null,
+        "currency": "Commission-based"
+      },
+      "platforms": ["MT4", "MT5", "ActTrader"],
+      "features": {
+        "multi_account_copy": 6,
+        "hedge_management": 1,
+        "risk_management": 5,
+        "speed_latency": 5,
+        "ui_ux": 7,
+        "platform_coverage": 6,
+        "automation": 7,
+        "support": 7
+      },
+      "strengths": [
+        "Institutional backing and trust",
+        "Large signal provider community",
+        "Production-grade infrastructure"
+      ],
+      "weaknesses": [
+        "Not prop-firm focused",
+        "No hedge management",
+        "Revenue model misaligned with prop traders"
+      ],
+      "estimated_users": 40000,
+      "momentum": "stable",
+      "threat_level": "low",
+      "differentiation_from_hedge_edge": "Mass market social trading vs niche prop firm hedge tooling"
+    },
+    {
+      "name": "cTrader Copy",
+      "website": "ctrader.com/copy",
+      "ring": "substitute",
+      "description": "Built-in copy trading feature within cTrader platform. Free for cTrader users.",
+      "pricing": {
+        "free_tier": true,
+        "starter": 0,
+        "pro": null,
+        "enterprise": null,
+        "currency": "Free (platform feature)"
+      },
+      "platforms": ["cTrader"],
+      "features": {
+        "multi_account_copy": 7,
+        "hedge_management": 2,
+        "risk_management": 5,
+        "speed_latency": 9,
+        "ui_ux": 8,
+        "platform_coverage": 2,
+        "automation": 6,
+        "support": 4
+      },
+      "strengths": [
+        "Free and native to cTrader",
+        "Excellent latency",
+        "Beautiful UI"
+      ],
+      "weaknesses": [
+        "cTrader only — limited market share",
+        "No cross-platform copy",
+        "No prop-firm specific features"
+      ],
+      "estimated_users": 20000,
+      "momentum": "stable",
+      "threat_level": "medium",
+      "differentiation_from_hedge_edge": "Platform-locked feature vs cross-platform hedge management"
+    }
+  ],
+  "feature_weights": {
+    "multi_account_copy": 0.20,
+    "hedge_management": 0.25,
+    "risk_management": 0.15,
+    "speed_latency": 0.15,
+    "ui_ux": 0.10,
+    "platform_coverage": 0.05,
+    "automation": 0.05,
+    "support": 0.05
+  },
+  "hedge_edge_features": {
+    "multi_account_copy": 9,
+    "hedge_management": 9,
+    "risk_management": 8,
+    "speed_latency": 9,
+    "ui_ux": 7,
+    "platform_coverage": 4,
+    "automation": 8,
+    "support": 6
+  }
+}

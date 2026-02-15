@@ -1,0 +1,32 @@
+# Railway Configuration for Hedge Edge License API
+# https://railway.app
+#
+# COST CONTROL (Usage-Based Pricing)
+# ===================================
+# Railway charges per vCPU-hour + GB-RAM-hour + bandwidth.
+# This config is optimized to minimize idle resource consumption:
+# - 1 Uvicorn worker (not 4 Gunicorn workers) — saves ~75% RAM
+# - No Gunicorn overhead — single async process handles concurrent requests fine
+# - At <100 users, expected cost: $0.50-2.00/mo (within $5 free credit)
+#
+# IMPORTANT: Set a spending cap in Railway dashboard:
+#   Settings → Usage → Usage Limit → Set to $5/mo
+#   This prevents runaway charges from DDoS, bugs, or infinite loops.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "uvicorn license_api_production:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1 --log-level info"
+healthcheckPath = "/health"
+healthcheckTimeout = 10
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+# ENV VARS: Set in Railway dashboard (Settings → Variables):
+# SUPABASE_URL, SUPABASE_SERVICE_KEY, CREEM_API_KEY,
+# CREEM_WEBHOOK_SECRET, SENTRY_DSN, IP_HASH_SALT
+
+[[deploy.customDomains]]
+host = "api.hedge-edge.com"

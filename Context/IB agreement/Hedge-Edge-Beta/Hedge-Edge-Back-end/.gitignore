@@ -1,0 +1,33 @@
+﻿# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment files with secrets
+.env
+.env.mt5
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Compiled binaries
+*.ex5
+*.dll
+*.exe
+*.so
+*.dylib
+
+# PyInstaller / standalone builds
+standalone/
+*.spec
+
+# OS
+.DS_Store
+Thumbs.db

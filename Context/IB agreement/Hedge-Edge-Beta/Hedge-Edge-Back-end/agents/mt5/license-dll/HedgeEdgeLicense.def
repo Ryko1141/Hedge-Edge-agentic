@@ -1,0 +1,15 @@
+; HedgeEdgeLicense.def
+; Module definition file for Hedge Edge License DLL
+; Defines exported functions for MT5 EA import
+
+LIBRARY HedgeEdgeLicense
+EXPORTS
+    InitializeLibrary       @1
+    ShutdownLibrary         @2
+    SetEndpoint             @3
+    ValidateLicense         @4
+    GetCachedToken          @5
+    IsTokenValid            @6
+    GetTokenTTL             @7
+    ClearCache              @8
+    GetLastError            @9
